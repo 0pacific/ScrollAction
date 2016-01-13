@@ -17,7 +17,6 @@ public class Player : Constants
     {
         Vector3 current = transform.position;
 
-
         if (Input.GetMouseButtonDown(0) && !isMoving)
         {
             newPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y,10));
@@ -53,5 +52,10 @@ public class Player : Constants
             }
             transform.position = current;
         }
+    }
+
+    void OnCollisionEnter(Collision c)
+    {
+        Destroy(c.gameObject);
     }
 }

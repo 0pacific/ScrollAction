@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour
+public class Player : Constants
 {
-    public const float FIRST_SPEED = 5;
-    public const float STAGE_WIDTH = 5.0f;
-    public const float STAGE_HEIGHT = 5.0f;
+
     bool isMoving = false;
     Vector3 newPos;
 

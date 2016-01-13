@@ -3,8 +3,10 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    private const float FIRST_SPEED = 5;
-    bool moving = false;
+    public const float FIRST_SPEED = 5;
+    public const float STAGE_WIDTH = 2.1f;
+    public const float STAGE_HEIGHT = 2.1f;
+    bool isMoving = false;
     Vector3 newPos;
 
     // Use this for initialization
@@ -15,22 +17,43 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 current = transform.position;
 
 
-        if (Input.GetMouseButtonDown(0) && !moving)
+        if (Input.GetMouseButtonDown(0) && !isMoving)
         {
             newPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y,10));
-            transform.position = Vector3.MoveTowards(transform.position, newPos, FIRST_SPEED * Time.deltaTime);
-            moving = true;
+            isMoving = true;
         }
 
-        if (moving)
+        if (isMoving)
         {
-            transform.position = Vector3.MoveTowards(transform.position, newPos, FIRST_SPEED * Time.deltaTime);
-            if (transform.position.Equals(newPos))
+            current = Vector3.MoveTowards(transform.position, newPos, FIRST_SPEED * Time.deltaTime);
+            if (current.Equals(newPos))
             {
-                moving = false;
+                isMoving = false;
             }
+            if (current.x <= STAGE_WIDTH * -1)
+            {
+                isMoving = false;
+                current.x = STAGE_WIDTH * -1;
+            }
+            else if (current.x >= STAGE_WIDTH)
+            {
+                isMoving = false;
+                current.x = STAGE_WIDTH;
+            }
+            if (current.y <= STAGE_HEIGHT * -1)
+            {
+                isMoving = false;
+                current.y = STAGE_HEIGHT * -1;
+            }
+            else if (current.y >= STAGE_HEIGHT)
+            {
+                isMoving = false;
+                current.y = STAGE_HEIGHT;
+            }
+            transform.position = current;
         }
     }
 }

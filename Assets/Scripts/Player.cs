@@ -5,6 +5,7 @@ public class Player : Constants
 {
 
     bool isMoving = false;
+    float velocity = 1;
     Vector3 newPos;
 
     // Use this for initialization
@@ -25,7 +26,7 @@ public class Player : Constants
 
         if (isMoving)
         {
-            current = Vector3.MoveTowards(transform.position, newPos, FIRST_SPEED * Time.deltaTime);
+            current = Vector3.MoveTowards(transform.position, newPos, FIRST_SPEED * Time.deltaTime * velocity);
             if (current.Equals(newPos))
             {
                 isMoving = false;
@@ -57,5 +58,6 @@ public class Player : Constants
     void OnCollisionEnter(Collision c)
     {
         Destroy(c.gameObject);
+        velocity+=0.3f;
     }
 }

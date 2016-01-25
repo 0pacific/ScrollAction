@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemies : Constants
+public class EnemyController : Constants
 {
 
     public GameObject enemy;
-
 
     // Use this for initialization
     void Start()
@@ -22,6 +21,5 @@ public class Enemies : Constants
 
 	// Update is called once per frame
 	  void Update () {
-
     }
 }

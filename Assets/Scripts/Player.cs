@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : Constants
+public class Player : MonoBehaviour
 {
 
     bool isMoving = false;
@@ -26,30 +26,30 @@ public class Player : Constants
 
         if (isMoving)
         {
-            current = Vector3.MoveTowards(transform.position, newPos, FIRST_SPEED * Time.deltaTime * velocity);
+            current = Vector3.MoveTowards(transform.position, newPos, Constants.FIRST_SPEED * Time.deltaTime * velocity);
             if (current.Equals(newPos))
             {
                 isMoving = false;
             }
-            if (current.x <= STAGE_WIDTH * -1)
+            if (current.x <= Constants.STAGE_WIDTH * -1)
             {
                 isMoving = false;
-                current.x = STAGE_WIDTH * -1;
+                current.x = Constants.STAGE_WIDTH * -1;
             }
-            else if (current.x >= STAGE_WIDTH)
+            else if (current.x >= Constants.STAGE_WIDTH)
             {
                 isMoving = false;
-                current.x = STAGE_WIDTH;
+                current.x = Constants.STAGE_WIDTH;
             }
-            if (current.y <= STAGE_HEIGHT * -1)
+            if (current.y <= Constants.STAGE_HEIGHT * -1)
             {
                 isMoving = false;
-                current.y = STAGE_HEIGHT * -1;
+                current.y = Constants.STAGE_HEIGHT * -1;
             }
-            else if (current.y >= STAGE_HEIGHT)
+            else if (current.y >= Constants.STAGE_HEIGHT)
             {
                 isMoving = false;
-                current.y = STAGE_HEIGHT;
+                current.y = Constants.STAGE_HEIGHT;
             }
             transform.position = current;
         }
